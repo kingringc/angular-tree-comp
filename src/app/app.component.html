@@ -1,0 +1,11 @@
+<app-tree [node]="treeNode">
+
+</app-tree>
+
+<div class="stats-panel">
+    <ng-container *ngIf="(nodeStats | async) != null">
+        <div class="" *ngFor="let state of (nodeStats | async)">
+            {{state.name}} : {{state.value}}
+        </div>
+    </ng-container>
+</div>

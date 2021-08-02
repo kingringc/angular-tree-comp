@@ -1,0 +1,19 @@
+<div>
+    <ng-container *ngIf="node">
+        <ng-container *ngIf="node.values">
+            <ng-container *ngIf="isThatArray(node.values)">
+                <button *ngIf="!node.isOpen" (click)="nodeExpand(node)" [attr.id]="'expand'+ node.name">+</button>
+                <button *ngIf="node.isOpen" (click)="nodeCollapse(node)" [attr.id]="'collapse'+ node.name">-</button>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+    <ng-container *ngIf="node?.name">
+        <label (click)="selectedNodeStats(node)">{{node?.name}}</label>
+    </ng-container>
+    <ng-container *ngIf="node?.isOpen">
+        <div class="childNode">
+            <app-tree *ngFor="let n of node?.values" [node]="n">
+            </app-tree>
+        </div>
+    </ng-container>
+</div>
