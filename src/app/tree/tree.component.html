@@ -8,11 +8,11 @@
         </ng-container>
     </ng-container>
     <ng-container *ngIf="node?.name">
-        <label (click)="selectedNodeStats(node)">{{node?.name}}</label>
+        <label (click)="selectedNode(node)">{{node?.name}}</label>
     </ng-container>
     <ng-container *ngIf="node?.isOpen">
         <div class="childNode">
-            <app-tree *ngFor="let n of node?.values" [node]="n">
+            <app-tree *ngFor="let n of node?.values" [node]="n" (nodeSelect)="selectedNode($event)">
             </app-tree>
         </div>
     </ng-container>

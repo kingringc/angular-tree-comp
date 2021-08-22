@@ -6,13 +6,14 @@ import { TreeService } from './tree.component.service';
 @Component({
   selector: 'app-tree',
   templateUrl: './tree.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./tree.component.scss']
 })
 export class TreeComponent implements OnInit {
   @Input() node: TreeNode | undefined;
+  @Output() nodeSelect: EventEmitter<TreeNode>;
 
   constructor(private treeService: TreeService) {
+    this.nodeSelect = new EventEmitter<TreeNode>()
   }
 
   ngOnInit(): void {
@@ -33,11 +34,11 @@ export class TreeComponent implements OnInit {
   }
 
   selectedNode(node: any): void {
-    // selected node
+    this.nodeSelect.emit(node);
   }
 
   selectedNodeStats(node: any): void {
-    this.treeService.selectedNodeStats(node && node.stats ? node.stats : null);
+    this.nodeSelect.emit(node);
   }
 
 }
